@@ -19,8 +19,6 @@ limitations under the License.
 package cm
 
 import (
-	"fmt"
-
 	"k8s.io/api/core/v1"
 	"k8s.io/client-go/tools/record"
 	"k8s.io/kubernetes/pkg/kubelet/cadvisor"
@@ -33,7 +31,7 @@ type unsupportedContainerManager struct {
 var _ ContainerManager = &unsupportedContainerManager{}
 
 func (unsupportedContainerManager) Start(_ *v1.Node, _ ActivePodsFunc) error {
-	return fmt.Errorf("Container Manager is unsupported in this build")
+	return nil
 }
 
 func (unsupportedContainerManager) SystemCgroupsLimit() v1.ResourceList {
