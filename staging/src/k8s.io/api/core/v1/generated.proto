@@ -524,6 +524,10 @@ message Container {
   // Default is false.
   // +optional
   optional bool tty = 18;
+
+  // CloudABI argument data that needs to be passed to the initial process.
+  // +optional
+  optional string argdata = 21;
 }
 
 // Describe a container image

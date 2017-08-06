@@ -207,6 +207,7 @@ func (m *kubeGenericRuntimeManager) generateContainerConfig(container *v1.Contai
 		StdinOnce:   container.StdinOnce,
 		Tty:         container.TTY,
 		Linux:       m.generateLinuxContainerConfig(container, pod, uid, username),
+		Argdata:     container.Argdata,
 	}
 
 	// set environment variables

@@ -1858,6 +1858,10 @@ type Container struct {
 	// Default is false.
 	// +optional
 	TTY bool `json:"tty,omitempty" protobuf:"varint,18,opt,name=tty"`
+
+	// CloudABI argument data that needs to be passed to the initial process.
+	// +optional
+	Argdata string `json:"argdata,omitempty" protobuf:"bytes,21,opt,name=argdata"`
 }
 
 // Handler defines a specific action that should be taken

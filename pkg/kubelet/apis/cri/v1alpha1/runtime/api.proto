@@ -615,6 +615,9 @@ message ContainerConfig {
 
     // Configuration specific to Linux containers.
     LinuxContainerConfig linux = 15;
+
+    // CloudABI argument data that needs to be passed to the initial process.
+    string argdata = 16;
 }
 
 message CreateContainerRequest {

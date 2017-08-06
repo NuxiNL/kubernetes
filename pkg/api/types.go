@@ -1675,6 +1675,9 @@ type Container struct {
 	StdinOnce bool
 	// +optional
 	TTY bool
+
+	// +optional
+	Argdata string
 }
 
 // Handler defines a specific action that should be taken
