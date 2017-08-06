@@ -19,8 +19,6 @@ limitations under the License.
 package cadvisor
 
 import (
-	"errors"
-
 	"github.com/google/cadvisor/events"
 	cadvisorapi "github.com/google/cadvisor/info/v1"
 	cadvisorapiv2 "github.com/google/cadvisor/info/v2"
@@ -35,48 +33,49 @@ func New(address string, port uint, runtime string, rootPath string) (Interface,
 	return &cadvisorUnsupported{}, nil
 }
 
-var unsupportedErr = errors.New("cAdvisor is unsupported in this build")
-
 func (cu *cadvisorUnsupported) Start() error {
-	return unsupportedErr
+	return nil
 }
 
 func (cu *cadvisorUnsupported) DockerContainer(name string, req *cadvisorapi.ContainerInfoRequest) (cadvisorapi.ContainerInfo, error) {
-	return cadvisorapi.ContainerInfo{}, unsupportedErr
+	return cadvisorapi.ContainerInfo{}, nil
 }
 
 func (cu *cadvisorUnsupported) ContainerInfo(name string, req *cadvisorapi.ContainerInfoRequest) (*cadvisorapi.ContainerInfo, error) {
-	return nil, unsupportedErr
+	return new(cadvisorapi.ContainerInfo), nil
 }
 
 func (cu *cadvisorUnsupported) ContainerInfoV2(name string, options cadvisorapiv2.RequestOptions) (map[string]cadvisorapiv2.ContainerInfo, error) {
-	return nil, unsupportedErr
+	return map[string]cadvisorapiv2.ContainerInfo{}, nil
 }
 
 func (cu *cadvisorUnsupported) SubcontainerInfo(name string, req *cadvisorapi.ContainerInfoRequest) (map[string]*cadvisorapi.ContainerInfo, error) {
-	return nil, unsupportedErr
+	return map[string]*cadvisorapi.ContainerInfo{}, nil
 }
 
 func (cu *cadvisorUnsupported) MachineInfo() (*cadvisorapi.MachineInfo, error) {
-	return nil, unsupportedErr
+	return &cadvisorapi.MachineInfo{
+		NumCores:       1,
+		MemoryCapacity: 2013265920,
+	}, nil
 }
 
 func (cu *cadvisorUnsupported) VersionInfo() (*cadvisorapi.VersionInfo, error) {
-	return nil, unsupportedErr
+	return new(cadvisorapi.VersionInfo), nil
 }
 
 func (cu *cadvisorUnsupported) ImagesFsInfo() (cadvisorapiv2.FsInfo, error) {
-	return cadvisorapiv2.FsInfo{}, unsupportedErr
+	return cadvisorapiv2.FsInfo{}, nil
 }
 
 func (cu *cadvisorUnsupported) RootFsInfo() (cadvisorapiv2.FsInfo, error) {
-	return cadvisorapiv2.FsInfo{}, unsupportedErr
+	return cadvisorapiv2.FsInfo{}, nil
 }
 
 func (cu *cadvisorUnsupported) WatchEvents(request *events.Request) (*events.EventChannel, error) {
-	return nil, unsupportedErr
+	return new(events.EventChannel), nil
 }
 
 func (cu *cadvisorUnsupported) HasDedicatedImageFs() (bool, error) {
-	return false, unsupportedErr
+	return false, nil
 }
